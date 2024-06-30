@@ -1,10 +1,10 @@
-const { GraphQLObjectType, GraphQLString, GraphQLInt, GraphQLSchema } = require('graphql');
+const { GraphQLObjectType, GraphQLID, GraphQLString, GraphQLInt, GraphQLSchema } = require('graphql');
 const _ = require('lodash');
 
 const TaskType = new GraphQLObjectType({
   name: 'Task',
   fields: {
-    id: { type: GraphQLString },
+    id: { type: GraphQLID },
     title: { type: GraphQLString },
     weight: { type: GraphQLInt },
     description: { type: GraphQLString }
@@ -21,7 +21,7 @@ const RootQuery = new GraphQLObjectType({
   fields: {
     task: {
       type: TaskType,
-      args: { id: { type: GraphQLString } },
+      args: { id: { type: GraphQLID } },
       resolve(parent, args) {
         return _.find(tasks, { id: args.id });
       }
