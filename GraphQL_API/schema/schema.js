@@ -27,6 +27,7 @@ const TaskType = new GraphQLObjectType({
     title: { type: GraphQLString },
     weight: { type: GraphQLInt },
     description: { type: GraphQLString },
+    projectId: { type: GraphQLID },
     project: {
       type: ProjectType,
       resolve(parent, args) {
@@ -68,6 +69,18 @@ const RootQuery = new GraphQLObjectType({
       args: { id: { type: GraphQLID } },
       resolve(parent, args) {
         return _.find(projects, { id: args.id });
+      }
+    },
+    tasks: {
+      type: new GraphQLList(TaskType),
+      resolve(parent, args) {
+        return tasks;
+      }
+    },
+    projects: {
+      type: new GraphQLList(ProjectType),
+      resolve(parent, args) {
+        return projects;
       }
     }
   }
