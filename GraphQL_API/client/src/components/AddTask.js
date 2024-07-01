@@ -2,10 +2,10 @@ import {
   useState,
   //useEffect
 } from "react";
-import { ggl } from "apollo-boost";
+import { gql } from "apollo-boost";
 import { graphql } from "react-apollo";
 
-const getProjectsQuery = ggl`
+const getProjectsQuery = gql`
 {
   projects {
     id
