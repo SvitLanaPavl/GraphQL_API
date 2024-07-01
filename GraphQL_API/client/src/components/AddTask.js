@@ -2,7 +2,7 @@ import {
   useState,
   //useEffect
 } from "react";
-import { getProjectsQuery } from "../queries/queries";
+import { getProjectsQuery, addTaskMutation } from "../queries/queries";
 import { graphql } from "react-apollo";
 
 
