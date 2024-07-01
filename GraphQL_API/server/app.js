@@ -3,10 +3,12 @@ const { graphqlHTTP } = require('express-graphql');
 const schema = require('../schema/schema');
 const mongoose = require('mongoose');
 const dotenv = require('dotenv');
+const cors = require('cord');
 
 dotenv.config();
 
 const app = express();
+app.use(cors());
 const mongoURL = process.env.MONGO_URI;
 mongoose.connect(mongoURL, { useNewUrlParser: true, useUnifiedTopology: true });
 
