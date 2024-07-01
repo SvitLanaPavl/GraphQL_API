@@ -2,17 +2,8 @@ import {
   useState,
   //useEffect
 } from "react";
-import { gql } from "apollo-boost";
+import { getProjectsQuery } from "../queries/queries";
 import { graphql } from "react-apollo";
-
-const getProjectsQuery = gql`
-{
-  projects {
-    id
-    title
-    }
-  }
-`;
 
 
 function AddTask(props) {
