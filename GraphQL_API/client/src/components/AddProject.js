@@ -25,8 +25,8 @@ function AddProject(props) {
     setInputsProject(newInputsProject)
   };
 
-  const submitForm1 = (e) => {
-    e.preventDEfault();
+  const submitForm = (e) => {
+    e.preventDefault();
     props.addProjectMutation({
       variables: {
         title: inputsProject.title,
@@ -37,7 +37,7 @@ function AddProject(props) {
     })
   }
 
-  return ( <form className = "project" id = "add-project"/*onSubmit = {...}*/ >
+  return ( <form className = "project" id = "add-project" onSubmit = {submitForm} >
     <div className = "field" >
     <label > Project title: </label> 
     <input type = "text"
