@@ -55,7 +55,7 @@ function AddTask(props) {
     });
   };
 
-  return ( <form class = "task"
+  return ( <form className = "task"
     id = "add-task"
     onSubmit = {handleSubmit} >
     <div className = "field" >

@@ -17,6 +17,28 @@ export const getProjectsQuery = gql`
   }
 `;
 
+export const getTaskDetailQuery = gql`
+  query GetTaskDetail($id: ID!) {
+    task(id: $id) {
+      id
+      title
+      weight
+      description
+      project {
+        id
+        title
+        weight
+        description
+        tasks {
+          id
+          title
+          weight
+        }
+      }
+    }
+  }
+`;
+
 export const addTaskMutation = gql`
   mutation($title: String!, $weight: Int!, $description: String!, $projectId: ID!) {
     addTask(title: $title, weight: $weight, description: $description, projectId: $projectId) {
