@@ -13,6 +13,11 @@ const taskSchema = new Schema({
   description: {
     type: String,
     required: true
+  },
+  projectId: {
+    type: Schema.Types.ObjectId,
+    ref: 'Project',
+    required: true
   }
 });
 

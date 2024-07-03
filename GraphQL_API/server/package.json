@@ -30,6 +30,7 @@
     "mongodb": "^3.5.9",
     "mongoose": "^5.11.19",
     "react-apollo": "^3.1.5",
+    "recompose": "^0.30.0",
     "resolve": "^1.22.8",
     "sha1": "^1.1.1",
     "uuid": "^8.2.0"

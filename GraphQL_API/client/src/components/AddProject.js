@@ -3,7 +3,7 @@ import {
   //useEffect
 } from "react";
 import { graphql } from "react-apollo";
-import 
+import { addProjectMutation, getProjectsQuery } from "../queries/queries";
 
 
 function AddProject(props) {
@@ -22,9 +22,21 @@ function AddProject(props) {
     if (e.target.name === "weight") newInputsProject[e.target.name] = parseInt(e.target.value)
     else newInputsProject[e.target.name] = e.target.value
     setInputsProject(newInputsProject)
+  };
+
+  const submitForm1 = (e) => {
+    e.preventDEfault();
+    props.addProjectMutation({
+      variables: {
+        title: inputsProject.title,
+        weight: parseInt(inputsProject.weight),
+        description: inputsProject.description,
+      },
+      refetchQueries: [{ query: getProjectsQuery }],
+    })
   }
 
-  return ( <form class = "project" id = "add-project"/*onSubmit = {...}*/ >
+  return ( <form className = "project" id = "add-project"/*onSubmit = {...}*/ >
     <div className = "field" >
     <label > Project title: </label> 
     <input type = "text"
@@ -58,4 +70,4 @@ function AddProject(props) {
   );
 }
 
-export default AddProject;
+export default graphql(addProjectMutation, { name: "addProjectMutation" })(AddProject);

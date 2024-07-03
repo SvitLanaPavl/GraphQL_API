@@ -16,7 +16,7 @@ function AddTask(props) {
 
   function displayProjects() {
     //  console.log(props);
-    var data = props.data;
+    var data = props.getProjectsQuery;
     if (data.loading) {
       return ( <option> Loading projects... </option>);
       }
@@ -43,6 +43,15 @@ function AddTask(props) {
   }
   const handleSubmit = (e) => {
     e.preventDefault();
+    props.addTaskMutation({
+      variables: {
+        title: inputs.title,
+        weight: parseInt(inputs.weight),
+        description: inputs.description,
+        projectId: inputs.projectId,
+      },
+      refetchQueries: [{ query: getProjectsQuery }],
+    });
   };
 
   return ( <form class = "task"
@@ -94,4 +103,6 @@ function AddTask(props) {
   );
 }
 
-export default graphql(getProjectsQuery)(AddTask);
+export default graphql(addTaskMutation, {
+  name: 'addTaskMutation',
+})(graphql(getProjectsQuery)(AddTask));
