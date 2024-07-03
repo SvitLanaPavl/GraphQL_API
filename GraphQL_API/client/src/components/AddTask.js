@@ -4,6 +4,7 @@ import {
 } from "react";
 import { getProjectsQuery, addTaskMutation } from "../queries/queries";
 import { graphql } from "react-apollo";
+import { flowRight as compose } from 'lodash';
 
 
 function AddTask(props) {
@@ -16,12 +17,12 @@ function AddTask(props) {
 
   function displayProjects() {
     //  console.log(props);
-    var data = props.getProjectsQuery;
-    if (data.loading) {
+    const { getProjectsQuery } = props;
+    if (getProjectsQuery.loading) {
       return ( <option> Loading projects... </option>);
       }
       else {
-        return data.projects.map(project => {
+        return getProjectsQuery.projects.map(project => {
             return ( <option key = {
                 project.id
               }
@@ -103,6 +104,7 @@ function AddTask(props) {
   );
 }
 
-export default graphql(addTaskMutation, {
-  name: 'addTaskMutation',
-})(graphql(getProjectsQuery)(AddTask));
+export default compose(
+  graphql(getProjectsQuery, { name: "getProjectsQuery" }),
+  graphql(addTaskMutation, { name: "addTaskMutation" })
+)(AddTask);

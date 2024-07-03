@@ -3,6 +3,7 @@ import {
   //useEffect
 } from "react";
 import { graphql } from "react-apollo";
+import { flowRight as compose } from 'lodash';
 import { addProjectMutation, getProjectsQuery } from "../queries/queries";
 
 
@@ -70,4 +71,6 @@ function AddProject(props) {
   );
 }
 
-export default graphql(addProjectMutation, { name: "addProjectMutation" })(AddProject);
+export default compose(
+  graphql(addProjectMutation, { name: "addProjectMutation" })
+)(AddProject)
