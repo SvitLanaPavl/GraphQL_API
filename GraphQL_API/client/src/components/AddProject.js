@@ -37,7 +37,7 @@ function AddProject(props) {
     })
   }
 
-  return ( <form className = "project" id = "add-project" onSubmit = {submitForm} >
+  return ( <form className = "project" id = "add-project" onSubmit = {submitForm}  >
     <div className = "field" >
     <label > Project title: </label> 
     <input type = "text"
